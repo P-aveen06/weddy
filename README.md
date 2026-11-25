@@ -59,9 +59,9 @@ flowchart LR
 | --- | --- | --- |
 | **Sarvam AI** | Translates announcements and messages into each guest's language (`mayura:v1`), reads them aloud (`bulbul:v3`), turns voice notes into text (`saaras:v4`) so the helper catches a duplicate gift even when an elder speaks, and powers the helper (`sarvam-105b`). All calls go through one server function, so the key never lives on a phone. Answers are cached, so the same translation is never paid for twice. | [`supabase/functions/ai/index.ts`](supabase/functions/ai/index.ts) |
 | **Flagsmith** | Live switches, no new app build: `helper_on` turns the AI helper off everywhere in about 30 seconds; `sarvam_live` switches between free sample answers and real Sarvam; `translate_mode` picks tap-to-translate or auto. Read by both the app and the server. Privacy rules are never behind a flag. | [`src/lib/flags.ts`](src/lib/flags.ts) |
-| **NudgeBee** | Planned, not built yet. | - |
+| **NudgeBee** | Planned: it will watch Weddy's servers during the QR join rush, when invitations go out. Not connected at submission. | [`docs/sponsors/nudgebee.md`](docs/sponsors/nudgebee.md) |
 
-One page per sponsor: [`docs/sponsors/`](docs/sponsors/). The whole app on one page: [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).
+One page per sponsor: [Sarvam AI](docs/sponsors/sarvam.md), [Flagsmith](docs/sponsors/flagsmith.md), [NudgeBee](docs/sponsors/nudgebee.md). The whole app on one page: [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).
 
 ## How it's built
 
@@ -86,7 +86,7 @@ One page per sponsor: [`docs/sponsors/`](docs/sponsors/). The whole app on one p
 | AI helper (duplicate-gift catch) | Draft built in code, not live yet (the server function isn't deployed) |
 | Sarvam AI live | Built in code, not deployed yet. Until then the app shows sample answers |
 | Flagsmith switches | Built in code (app and server). Flags not created yet, so the defaults are used |
-| NudgeBee | Planned, not built yet |
+| NudgeBee | Planned, not connected yet |
 
 ## Run it
 
