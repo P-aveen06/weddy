@@ -102,6 +102,7 @@ export default function Start() {
         />
         <View style={{ padding: 16 }}>
           <P soft>Point your camera at the QR code on the invitation.</P>
+          <Button title="Type the code instead" kind="ghost" onPress={() => setMode('guest')} />
         </View>
       </Screen>
     );
