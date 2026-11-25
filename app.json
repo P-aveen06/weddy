@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Weddy",
+    "slug": "weddy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.weddy.ios",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Weddy uses Face ID to open surprise rooms."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Weddy uses the microphone for voice notes."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Weddy uses the camera to scan the invitation QR code."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Weddy uses Face ID to open surprise rooms."
+        }
+      ]
+    ],
+    "scheme": "weddy"
+  }
+}
