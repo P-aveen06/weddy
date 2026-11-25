@@ -175,13 +175,13 @@ export default function Start() {
     <Screen title="Create our wedding" onBack={() => setMode('choose')}>
       <Input label="Wedding name" value={title} onChangeText={setTitle} placeholder="e.g. Priya & Arjun" />
       <Input label="Your name" value={name} onChangeText={setName} />
-      <Input label="Your partner's phone number" value={partnerPhone} onChangeText={setPartnerPhone} keyboardType="phone-pad" />
+      <Input label="Your partner's phone number (with +91)" value={partnerPhone} onChangeText={setPartnerPhone} keyboardType="phone-pad" />
       <P soft>Both your numbers and this phone are blocked from joining as guests, so you can never stumble on a surprise.</P>
       {langPicker}
       <Button
         title="Create"
         busy={busy}
-        disabled={!title.trim() || !name.trim() || partnerPhone.replace(/\D/g, '').length < 10}
+        disabled={!title.trim() || !name.trim() || partnerPhone.replace(/\D/g, '').length < 11}
         onPress={async () =>
           run(async () =>
             supabase.rpc('create_wedding', {
