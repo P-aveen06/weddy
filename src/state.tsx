@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from './lib/supabase';
 import { setFlagIdentity } from './lib/flags';
@@ -46,6 +46,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [myWeddings, setMyWeddings] = useState<(Member & { weddings: Wedding })[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
   const [stack, setStack] = useState<Route[]>([{ name: 'home' }]);
+  const autoOpened = useRef(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -65,8 +66,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       .order('joined_at', { ascending: false });
     const rows = (data ?? []) as (Member & { weddings: Wedding })[];
     setMyWeddings(rows);
-    if (rows.length === 1 && !openId) setOpenId(rows[0].wedding_id);
-  }, [session, openId]);
+    // Open your only wedding straight away, once. "Switch" still takes you back to the list.
+    if (rows.length === 1 && !autoOpened.current) {
+      autoOpened.current = true;
+      setOpenId(rows[0].wedding_id);
+    }
+  }, [session]);
 
   useEffect(() => {
     reloadWeddings();
